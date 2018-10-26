@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Haoji Xu"
+		]
+	},
+	"wikioutliner-desc": "{{desc|name=wikioutliner|url=https://www.mediawiki.org/wiki/Extension:wikioutliner}}",
+	"wikioutliner-helloworld": "Page title of the HelloWorld special page.\n{{Identical|Hello World}}",
+	"wikioutliner-helloworld-intro": "Text displayed on the HelloWorld SpecialPage.",
+	"helloworld": "Text of the link to the HelloWorld special page on SpecialPages.\n{{Identical|Hello World}}",
+	"testform-section1": "Label for the legend",
+	"testform-subsection": "Label for another legend",
+	"testform-myfield1": "Label for a textbox",
+	"testform-myfield2": "Label for a textbox"
+}

@@ -1,0 +1,65 @@
+{
+	"name": "WikiOutliner",
+	"version": "0.0.1",
+	"author": [
+		"Haoji Xu"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:WikiOutliner",
+	"descriptionmsg": "Outline right in MediaWiki!",
+	"license-name": "GPL-2.0-or-later",
+	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.29.0"
+	},
+	"AutoloadClasses": {
+		"MediaWiki\\Extension\\WikiOutliner\\Hooks": "src/Hooks.php",
+		"MediaWiki\\Extension\\WikiOutliner\\SpecialHelloWorld": "src/SpecialHelloWorld.php",
+		"MediaWiki\\Extension\\WikiOutliner\\SpecialOutliner": "src/SpecialOutliner.php",
+		"MediaWiki\\Extension\\WikiOutliner\\SpecialImportOpml": "src/SpecialImportOpml.php"
+	},
+	"ConfigRegistry": {
+		"wikiOutliner": "GlobalVarConfig::newInstance"
+	},
+	"config": {
+		"wikiOutlinerEnableFoo": {
+			"value": true,
+			"description": "Whether or not the foo feature is enabled."
+		}
+	},
+	"ExtensionMessagesFiles": {
+		"WikiOutlinerAlias": "WikiOutliner.i18n.alias.php"
+	},
+	"Hooks": {
+		"ArticlePageDataBefore": "MediaWiki\\Extension\\WikiOutliner\\Hooks::onArticlePageDataBefore"
+	},
+	"MessagesDirs": {
+		"WikiOutliner": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+		"ext.WikiOutliner.concord": {
+			"scripts": [
+				"modules/concord/concord.js",
+				"modules/concord/concordUtils.js",
+				"modules/concord/outlinerpage.js"
+			],
+			"styles": [
+				"modules/concord/concord.css",
+				"modules/concord/outlinerpage.css"
+			],
+			"messages": [],
+			"dependencies": []
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "WikiOutliner"
+	},
+	"SpecialPages": {
+		"HelloWorld": "MediaWiki\\Extension\\WikiOutliner\\SpecialHelloWorld",
+		"Outliner": "MediaWiki\\Extension\\WikiOutliner\\SpecialOutliner",
+		"ImportOpml": "MediaWiki\\Extension\\WikiOutliner\\SpecialImportOpml"
+	},
+	"manifest_version": 2
+}

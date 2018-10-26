@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Haoji Xu"
+		]
+	},
+	"wikioutliner-desc": "This is an example extension",
+	"wikioutliner-helloworld": "Hello world!",
+	"wikioutliner-helloworld-intro": "Welcome to the \"Hello world\" special page of the wikioutliner extension.",
+	"helloworld": "Hello world",
+	"outliner": "Outliner",
+	"testform-section1": "Test Form",
+	"testform-subsection": "Subsection",
+	"testform-myfield1": "Howdy!",
+	"testform-myfield2": "Sup?"
+}
