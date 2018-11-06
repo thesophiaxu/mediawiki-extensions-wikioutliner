@@ -309,7 +309,7 @@ function ConcordOutline(container, options) {
 		var root = this.root;
 		var editor = this.editor;
 		var op = this.op;
-		var openUrl = "http://concord.smallpicture.com/open";
+		var openUrl = "https://concord.smallpicture.com/open";
 		if(root.data("open")) {
 			openUrl = root.data("open");
 			}
@@ -342,7 +342,7 @@ function ConcordOutline(container, options) {
 	this.save = function(cb) {
 		var opmlId = this.root.data("id");
 		if(opmlId && this.op.changed()) {
-			var saveUrl = "http://concord.smallpicture.com/save";
+			var saveUrl = "https://concord.smallpicture.com/save";
 			if(this.root.data("save")) {
 				saveUrl = this.root.data("save");
 				}
@@ -366,7 +366,7 @@ function ConcordOutline(container, options) {
 			}
 		};
 	this["import"] = function(opmlId, cb) {
-		var openUrl = "http://concordold.smallpicture.com/open";
+		var openUrl = "https://concordold.smallpicture.com/open";
 		var root = this.root;
 		var concordInstance = this;
 		if(root.data("open")) {

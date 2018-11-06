@@ -8,6 +8,9 @@ var appPrefs = {
     "outlineFont": "Georgia", "outlineFontSize": 16, "outlineLineHeight": 24,
     "authorName": "", "authorEmail": ""
 };
+
+var currentPage = ""
+
 var whenLastKeystroke = new Date (), whenLastAutoSave = new Date ();
 var flReadOnly = false, flRenderMode = false;
 var cmdKeyPrefix = "Ctrl+";
@@ -35,7 +38,7 @@ function initLocalStorage () {
     if (localStorage.flTextMode == undefined) {
         localStorage.flTextMode = "true";
     }
-    var onlineFile = loadOutlineFromCloud($( "#filename" ).val())
+    var onlineFile = loadOutlineFromCloud(currentPage)
     localStorage.savedOpmltext = onlineFile;
     console.log(localStorage.savedOpmltext)
 }
@@ -189,7 +192,9 @@ function loadOutlineFromCloud (pageName) {
         localStorage.ctOpmlSaves = 0;
         localStorage.whenLastSave = new Date ().toString ();
         localStorage.flTextMode = "true";
-        $( "#filename" ).val(pageName)
+        $( "#filename" ).val(pageName);
+        currentPage = pageName;
+        return initialOpmltext;
     }
 }
 
@@ -199,7 +204,7 @@ function saveOutlineNow () {
     opClearChanged ();
     console.log ("saveOutlineNow: " + localStorage.savedOpmltext.length + " chars.");
     //sync to cloud (Up emoji)
-    var editfilename = "Outline:" + $( "#filename" ).val();
+    var editfilename = "Outline:" + currentPage;
     saveOutlineToCloud(editfilename, localStorage.savedOpmltext);
 
 }
@@ -225,11 +230,27 @@ function findGetParameter(parameterName) {
     return result;
 }
 
+function requestAndSetFileList() {
+    var api = new mw.Api();
+    var promiser = api.parse(
+        new mw.Title( 'Outlines' ),
+        { section: 1 }
+    );
+    promiser.then( function( text ) {
+        $("#filelist").html(text)
+    } );
+}
+
 function startup () {
     // First and Foremost, get page name by checking query
     var urlPage = findGetParameter("pagename")
     if (urlPage === null) urlPage = "MasterOutline"
     $("#filename").val(urlPage);
+
+    currentPage = $("#filename").val();
+
+    // Initiate sidebar (File list)
+    requestAndSetFileList();
 
     initLocalStorage()
     $("#idMenuProductName").text (appConsts.productname);
@@ -249,6 +270,14 @@ function startup () {
     opXmlToOutline (localStorage.savedOpmltext);
     self.setInterval (function () {backgroundProcess ()}, 1000); //call every second
 }
+
+$(this).on('keyup', function(event) {
+    if (event.keyCode == 27) {
+        toggleFullscreen()
+    } else {
+        console.log(event.keyCode)
+    }
+})
 
 $(document).ready (function () {
     startup ();

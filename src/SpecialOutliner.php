@@ -44,11 +44,13 @@ class SpecialOutliner extends SpecialPage {
 
         $out->addHelpLink( 'How to become a MediaWiki hacker' );
 
-        $out->addWikiMsg( 'Welcome to WikiOutliner.' );
-        $out->addWikiMsg( 'use ?pagename=xxx to edit');
+        $out->addWikiMsg( 'welcome-to-wikioutliner' );
+        $out->addWikiMsg( 'use-pagename-to-edit');
+        $out->addWikiMsg( 'use-esc-to-toggle-fullscreen');
 
         $out->addModules ( 'ext.WikiOutliner.concord' );
         $out->addModules ( 'mediawiki.api.edit' );
+        $out->addModules ( 'mediawiki.api.parse' );
 
         // HTML Head Info
         $out->addHeadItem( 'everything', '<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">');
@@ -56,83 +58,22 @@ class SpecialOutliner extends SpecialPage {
         $out->addHTML( '
         <br/>
         <br/>
-        <input type="text" id="filename" value="MasterOutline"></input>
-        <!--
-		<div class="divMenubar" id="idMenubar">
-			<div class="topbar-wrapper" style="z-index: 0; opacity: 1;">
-				<div class="navbar navbar-outliner navbar-fixed-top" data-dropdown="dropdown">
-					<div class="navbar-inner">
-						<div class="container">
-							<a class="brand" href="/"><span id="idMenuProductName"></span></a>
-							<ul class="nav" id="idMainMenuList">
-								<li class="dropdown" id="idOutlinerMenu"> 
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Outliner&nbsp;<b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a onclick="opExpand ();"><span class="menuKeystroke">Cmd-,</span>Expand</a></li>
-										<li><a onclick="opExpandAllLevels ();">Expand All Subs</a></li>
-										<li><a onclick="opExpandEverything ();">Expand Everything</a></li>
-										
-										<li class="divider"></li>
-										<li><a onclick="opCollapse ();"><span class="menuKeystroke">Cmd-.</span>Collapse</a></li>
-										<li><a onclick="opCollapseEverything ();">Collapse Everything</a></li>
-										
-										<li class="divider"></li>
-										<li><a onclick="opReorg (up, 1);"><span class="menuKeystroke">Cmd-U</span>Move Up</a></li>
-										<li><a onclick="opReorg (down, 1);"><span class="menuKeystroke">Cmd-D</span>Move Down</a></li>
-										<li><a onclick="opReorg (left, 1);"><span class="menuKeystroke">Cmd-L</span>Move Left</a></li>
-										<li><a onclick="opReorg (right, 1);"><span class="menuKeystroke">Cmd-R</span>Move Right</a></li>
-										
-										<li class="divider"></li>
-										<li><a onclick="opPromote ();"><span class="menuKeystroke">Cmd-[</span>Promote</a></li>
-										<li><a onclick="opDemote ();"><span class="menuKeystroke">Cmd-]</span>Demote</a></li>
-										
-										<li class="divider"></li>
-										<li><a onclick="runSelection ();"><span class="menuKeystroke">Cmd-/</span>Run Selection</a></li>
-										<li><a onclick="toggleComment ();"><span class="menuKeystroke">Cmd-\</span>Toggle Comment</a></li>
-										
-										<li class="divider"></li>
-										<li><a onclick="toggleRenderMode ();"><span class="menuKeystroke">Cmd-`</span>Toggle Render Mode</a></li>
-										</ul>
-									</li>
-								<li class="dropdown" id="idSourceMenu"> 
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Source&nbsp;<b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a onclick="editSource (urlWorknotes);">Worknotes</a></li>
-										<li class="divider"></li>
-										<li><a onclick="editSource (urlExample0);">Example 0</a></li>
-										<li><a onclick="editSource (urlHelloOutliner);">Example 1</a></li>
-										<li><a onclick="editSource (urlExample2);">Example 2</a></li>
-										<li class="divider"></li>
-										<li><a onclick="editSource (urlConcordSource);">Concord</a></li>
-										<li><a onclick="editSource (urlConcordCssSource);">Concord CSS</a></li>
-										<li><a onclick="editSource (urlConcordUtilsSource);">Concord Utils</a></li>
-										<li class="divider"></li>
-										<li><a onclick="editSource (urlConcordDocs);">Concord Docs</a></li>
-										</ul>
-									</li>
-								<li class="dropdown" id="idDocsMenu">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Links&nbsp;<b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a href="https://docs.fargo.io/outlinerHowto" target="_blank">Outliner Howto</a></li>
-										<li><a href="https://github.com/scripting/concord" target="_blank">GitHub Repo</a></li>
-										<li><a href="https://groups.google.com/forum/?fromgroups#!forum/smallpicture-concord" target="_blank">Mail List</a></li>
-										</ul>
-									</li>
-								</ul>
-							<ul class="nav pull-right">
-								<li>
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="idProductVersion"></span></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>-->
-		<div class="divOutlinerContainer">
+        <input type="text" id="filename" value=""></input>
+        <script>function renavToFile() {
+                // Go to file
+                var filename = $("#filename").val();
+                window.location = "/index.php/Special:Outliner?pagename="+filename;
+        }</script>
+        <script>function toggleFullscreen() {$(\'#containerelement\').toggleClass(\'fullscreen\');}</script>
+        <script></script>
+        <button class="btn btn-secondary" onClick="renavToFile()">Go</button>
+		<div class="divOutlinerContainer" id="containerelement" style="display: flex;">
+		    <div id="filelist">
+		        <!--placeholder--></div>
 			<div id="outliner">
 				</div>
 			</div>
+			
 		' );
 
     }

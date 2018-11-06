@@ -185,7 +185,7 @@ var defaultUtilsOutliner = "#outliner";
 		return ($(defaultUtilsOutliner).concord ().op.wipe ());
 		}
 //readText
-	var readHttpUrl = "http://trex.smallpicture.com/ajax/httpReadUrl";
+	var readHttpUrl = "https://trex.smallpicture.com/ajax/httpReadUrl";
 	
 	function readText (url, callback, op, flAcceptOpml) {
 		var headerval = {};

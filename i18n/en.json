@@ -9,8 +9,7 @@
 	"wikioutliner-helloworld-intro": "Welcome to the \"Hello world\" special page of the wikioutliner extension.",
 	"helloworld": "Hello world",
 	"outliner": "Outliner",
-	"testform-section1": "Test Form",
-	"testform-subsection": "Subsection",
-	"testform-myfield1": "Howdy!",
-	"testform-myfield2": "Sup?"
+	"welcome-to-wikioutliner": "Welcome to <b>WikiOutliner</b>'s special outliner page!",
+	"use-pagename-to-edit": "use ?pagename=xxx to edit.",
+	"use-esc-to-toggle-fullscreen": "use <b>ESC</b> key to toggle fullscreen."
 }
